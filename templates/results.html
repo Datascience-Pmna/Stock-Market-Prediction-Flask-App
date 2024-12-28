@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles-result.css">
+    <title>Stock Prediction Results</title>
+</head>
+<body>
+    <div class="go-back">
+        <a href="{{ url_for('back_to_index') }}">Predict again</a>
+    </div>
+    <div class="content">
+    <h1>Prediction Results</h1>
+
+    {% if error_message %}
+    <h2 style="color: red;">{{ error_message }}</h2>
+    {% else %}
+        <h2>Next 10 Days Prediction</h2>
+        <div class="plot">
+            <img src="data:image/png;base64,{{ plots.next_10_days }}" alt="Next 10 Days Prediction">
+        </div>
+    <div class="plot">
+    {% if plots.actual_vs_predicted %}
+    <h3>Actual vs Predicted Prices</h3>
+    <img src="data:image/png;base64,{{ plots.actual_vs_predicted }}" alt="Actual vs Predicted Prices">
+    {% endif %}
+    {% if plots.closing_prices %}
+    <h3>Closing Prices</h3>
+    <img src="data:image/png;base64,{{ plots.closing_prices }}" alt="Closing Prices">
+    {% endif %}
+    {% if plots.moving_averages %}
+    <h3>Moving Averages</h3>
+    <img src="data:image/png;base64,{{ plots.moving_averages }}" alt="Moving Averages">
+    {% endif %}
+    {% endif %}
+    </div>
+    </div>
+    <div class="go-back">
+        <a href="{{ url_for('back_to_index') }}">Predict again</a>
+    </div>
+</body>
+</html>

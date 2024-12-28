@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles-index.css"
+</head>
+<body>
+    <div class="cont">
+        <h1>Stock Market Trend Predictor</h1>
+        <div class="form-cont">
+        <form method="POST" action="/">
+            <label for="stock_id">Enter Stock ID (e.g., GOOG, AMZN):</label>
+            <div class="cd">
+                <input type="text" id="stock_id" name="stock_id" placeholder="Enter stock ID">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+        </div>
+        {% if error_message %}
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <p>{{ error_message }}</p>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+        {% endif %}
+    
+        <script>
+            // Show modal on page load if error_message exists
+            window.onload = function() {
+                const modal = document.getElementById("error-modal");
+                if (modal) {
+                    modal.style.display = "block";
+                }
+            };
+    
+            // Close the modal
+            function closeModal() {
+                const modal = document.getElementById("error-modal");
+                if (modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>   
+    </div>
+</body>
+</html>
